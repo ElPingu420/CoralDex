@@ -1,66 +1,62 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+import { useEffect, useState } from 'react'
+import CoralCard from '@/components/CoralCard'
+import CoralGame from '@/components/CoralGame'
+import './page.css'
 
-export default function Home() {
+function App() {
+  const [corals, setCorals] = useState([])
+  const [currentView, setCurrentView] = useState('collection')
+  const [loading, setLoading] = useState(true)
+  
+  useEffect(() => {
+    fetch('/api/corals')
+      .then(res => res.json())
+      .then(data => {
+        setCorals(data)
+        setLoading(false)
+      })
+  }, [])
+  
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
+    <div className="app">
+      <h1>🪸 CoralDex 🪸</h1>
+      <p className="subtitle">Collect and learn about amazing coral species!</p>
+
+      {loading ? (
+        <p style={{ textAlign: 'center', fontSize: '1.2rem', marginTop: '2rem' }}>
+          Loading corals... 🪸
+        </p>
+      ) : (
+        <>
+          <div className="nav-buttons">
+            <button
+              className={currentView === 'collection' ? 'active' : ''}
+              onClick={() => setCurrentView('collection')}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
+              📚 Collection
+            </button>
+            <button
+              className={currentView === 'game' ? 'active' : ''}
+              onClick={() => setCurrentView('game')}
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+              🎮 Play Game
+            </button>
+          </div>
+
+          {currentView === 'game' ? (
+            <CoralGame corals={corals} />
+          ) : (
+            <div className="card-grid">
+              {corals.map((coral, index) => (
+                <CoralCard key={index} coral={coral} />
+              ))}
+            </div>
+          )}
+        </>
+      )}
     </div>
-  );
+  )
 }
+
+export default App

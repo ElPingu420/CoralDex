@@ -1,0 +1,181 @@
+.coral-game {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.game-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.score {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.question-image {
+  width: 100%;
+  height: 300px;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.question-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.question-text {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.question-text h3 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.answer-button {
+  padding: 15px;
+  font-size: 1rem;
+  background: white;
+  color: #667eea;
+  border: 3px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.answer-button:hover:not(:disabled) {
+  transform: scale(1.05);
+  border-color: #fbbf24;
+}
+
+.answer-button:disabled {
+  cursor: not-allowed;
+}
+
+.answer-button.correct {
+  background: #10b981;
+  color: white;
+  border-color: #10b981;
+}
+
+.answer-button.wrong {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
+.result {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 15px;
+  margin-top: 1.5rem;
+}
+
+.result-correct h3 {
+  color: #10b981;
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.result-wrong h3 {
+  color: #ef4444;
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.result p {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+}
+
+.next-button, .start-button {
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  background: #fbbf24;
+  color: #1e3a8a;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.next-button:hover, .start-button:hover {
+  background: #f59e0b;
+  transform: translateY(-2px);
+}
+
+.start-button {
+  font-size: 1.3rem;
+  padding: 15px 40px;
+}
+
+.game-over {
+  text-align: center;
+  padding: 2rem;
+}
+
+.game-over h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.final-score {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  color: #fbbf24;
+}
+
+.percentage {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+
+.perfect {
+  font-size: 1.3rem;
+  color: #10b981;
+  font-weight: bold;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
